@@ -34,6 +34,43 @@ export default function HomePage() {
           </Button>
         </SignUpButton>
       </section>
+      <section className="bg-primary text-primary-foreground">
+        <div className="container py-16 flex flex-col gap-16 px-8 md:px-16">
+          <h2 className="text-3xl text-center text-balance">Trusted by the top modern companies</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-16">
+            <Link href="#">
+              <DraftBitIcon />
+            </Link>
+            <Link href="#">
+              <AmieIcon />
+            </Link>
+            <Link href="#">
+              <DraftBitIcon />
+            </Link>
+            <Link href="#">
+              <AmieIcon />
+            </Link>
+            <Link href="#">
+              <DraftBitIcon />
+            </Link>
+            <Link href="#">
+              <AmieIcon />
+            </Link>
+            <Link href="#">
+              <DraftBitIcon />
+            </Link>
+            <Link href="#">
+              <AmieIcon />
+            </Link>
+            <Link href="#">
+              <DraftBitIcon />
+            </Link>
+            <Link href="#" className="md:max-xl:hidden">
+              <AmieIcon />
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
