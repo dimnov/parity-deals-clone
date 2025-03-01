@@ -16,6 +16,7 @@ import {
 import { formatCompactNumber } from "@/lib/formatters";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import BrandLogo from "@/components/BrandLogo";
 
 export default function HomePage() {
   return (
@@ -81,6 +82,61 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      <footer className="container pt-16 pb-8 flex flex-col sm:flex-row gap-8 sm:gap-4 justify-between items-center">
+        <Link href="/">
+          <BrandLogo />
+        </Link>
+        <div className="flex flex-col sm:flex-row gap-8">
+          <div className="flex flex-col gap-8">
+            <FooterLinkGroup
+              title="Help"
+              links={[
+                { label: "PPP Discounts", href: "#" },
+                { label: "Discount API", href: "#" },
+              ]}
+            />
+            <FooterLinkGroup
+              title="Help"
+              links={[
+                { label: "PPP Discounts", href: "#" },
+                { label: "Discount API", href: "#" },
+              ]}
+            />
+          </div>
+          <div className="flex flex-col gap-8">
+            <FooterLinkGroup
+              title="Help"
+              links={[
+                { label: "PPP Discounts", href: "#" },
+                { label: "Discount API", href: "#" },
+              ]}
+            />
+            <FooterLinkGroup
+              title="Help"
+              links={[
+                { label: "PPP Discounts", href: "#" },
+                { label: "Discount API", href: "#" },
+              ]}
+            />
+          </div>
+          <div className="flex flex-col gap-8">
+            <FooterLinkGroup
+              title="Help"
+              links={[
+                { label: "PPP Discounts", href: "#" },
+                { label: "Discount API", href: "#" },
+              ]}
+            />
+            <FooterLinkGroup
+              title="Help"
+              links={[
+                { label: "PPP Discounts", href: "#" },
+                { label: "Discount API", href: "#" },
+              ]}
+            />
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
@@ -133,6 +189,27 @@ function Feature({ children, className }: { children: ReactNode; className?: str
     <div className={cn("flex items-center gap-2", className)}>
       <CheckIcon className="size-4 stroke-accent bg-accent/25 rounded-full p-0.5" />
       <span>{children}</span>
+    </div>
+  );
+}
+
+function FooterLinkGroup({
+  title,
+  links,
+}: {
+  title: string;
+  links: { label: string; href: string }[];
+}) {
+  return (
+    <div className="flex flex-col gap-4">
+      <h3 className="font-semibold">{title}</h3>
+      <ul className="flex flex-col gap-2 text-sm">
+        {links.map((link) => (
+          <li key={link.label}>
+            <Link href={link.href}>{link.label}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
