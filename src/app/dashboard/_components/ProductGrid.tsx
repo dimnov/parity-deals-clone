@@ -48,7 +48,7 @@ export function ProductCard({
       <CardHeader>
         <div className="flex gap-2 justify-between items-end">
           <CardTitle>
-            <Link href={`/dashboard/products${id}/edit`}>{name}</Link>
+            <Link href={`/dashboard/products/${id}/edit`}>{name}</Link>
           </CardTitle>
           <Dialog>
             <AlertDialog>
