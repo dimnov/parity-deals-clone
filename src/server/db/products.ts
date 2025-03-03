@@ -41,6 +41,14 @@ export function getProducts(userId: string, { limit }: { limit?: number }) {
   return cacheFn(userId, { limit });
 }
 
+export function getProduct({ id, userId }: { id: string; userId: string }) {
+  const cacheFn = dbCache(getProductInternal, {
+    tags: [getIdTag(id, CACHE_TAGS.products)],
+  });
+
+  return cacheFn({ id, userId });
+}
+
 export async function createProduct(data: typeof ProductTable.$inferInsert) {
   const [newProduct] = await db
     .insert(ProductTable)
