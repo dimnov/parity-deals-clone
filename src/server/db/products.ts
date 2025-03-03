@@ -1,7 +1,37 @@
 import { db } from "@/drizzle/db";
-import { ProductCustomizationTable, ProductTable } from "@/drizzle/schema";
-import { CACHE_TAGS, dbCache, getUserTag, revalidateDbCache } from "@/lib/cache";
-import { and, eq } from "drizzle-orm";
+import {
+  CountryGroupDiscountTable,
+  ProductCustomizationTable,
+  ProductTable,
+} from "@/drizzle/schema";
+import {
+  CACHE_TAGS,
+  dbCache,
+  getGlobalTag,
+  getIdTag,
+  getUserTag,
+  revalidateDbCache,
+} from "@/lib/cache";
+import { and, eq, inArray, sql } from "drizzle-orm";
+import { BatchItem } from "drizzle-orm/batch";
+
+export function getProductCountryGroups({
+  productId,
+  userId,
+}: {
+  productId: string;
+  userId: string;
+}) {
+  const cacheFn = dbCache(getProductCountryGroupsInternal, {
+    tags: [
+      getIdTag(productId, CACHE_TAGS.products),
+      getGlobalTag(CACHE_TAGS.countries),
+      getGlobalTag(CACHE_TAGS.countryGroups),
+    ],
+  });
+
+  return cacheFn({ productId, userId });
+}
 
 export function getProducts(userId: string, { limit }: { limit?: number }) {
   const cacheFn = dbCache(getProductsInternal, {
