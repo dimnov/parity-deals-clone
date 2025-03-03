@@ -10,6 +10,8 @@ export const CACHE_TAGS = {
   products: "products",
   productViews: "productViews",
   subscription: "subscription",
+  countries: "subscription",
+  countryGroups: "subscription",
 } as const;
 
 export function getGlobalTag(tag: keyof typeof CACHE_TAGS) {
@@ -24,7 +26,7 @@ export function getIdTag(id: string, tag: keyof typeof CACHE_TAGS) {
   return `user:${id}-${CACHE_TAGS[tag]}` as const;
 }
 
-export function cleanFullCache() {
+export function clearFullCache() {
   revalidateTag("*");
 }
 
