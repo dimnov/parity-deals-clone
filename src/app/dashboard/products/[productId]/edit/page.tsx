@@ -4,7 +4,6 @@ import ProductDetailsForm from "@/app/dashboard/_components/forms/ProductDetails
 import PageWithBackButton from "@/app/dashboard/_components/PageWithBackButton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { clearFullCache } from "@/lib/cache";
 import { canCustomizeBanner, canRemoveBranding } from "@/server/db/permissions";
 import { getProduct, getProductCountryGroups, getProductCustomization } from "@/server/db/products";
 import { auth } from "@clerk/nextjs/server";
