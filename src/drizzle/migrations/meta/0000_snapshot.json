@@ -53,12 +53,8 @@
           "name": "country_group_discounts_country_group_id_country_groups_id_fk",
           "tableFrom": "country_group_discounts",
           "tableTo": "country_groups",
-          "columnsFrom": [
-            "country_group_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["country_group_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -66,12 +62,8 @@
           "name": "country_group_discounts_product_id_products_id_fk",
           "tableFrom": "country_group_discounts",
           "tableTo": "products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -79,10 +71,7 @@
       "compositePrimaryKeys": {
         "country_group_discounts_country_group_id_product_id_pk": {
           "name": "country_group_discounts_country_group_id_product_id_pk",
-          "columns": [
-            "country_group_id",
-            "product_id"
-          ]
+          "columns": ["country_group_id", "product_id"]
         }
       },
       "uniqueConstraints": {},
@@ -135,9 +124,7 @@
         "country_groups_name_unique": {
           "name": "country_groups_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "name"
-          ]
+          "columns": ["name"]
         }
       },
       "policies": {},
@@ -194,12 +181,8 @@
           "name": "countries_country_group_id_country_groups_id_fk",
           "tableFrom": "countries",
           "tableTo": "country_groups",
-          "columnsFrom": [
-            "country_group_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["country_group_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -209,16 +192,12 @@
         "countries_name_unique": {
           "name": "countries_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "name"
-          ]
+          "columns": ["name"]
         },
         "countries_code_unique": {
           "name": "countries_code_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "code"
-          ]
+          "columns": ["code"]
         }
       },
       "policies": {},
@@ -267,7 +246,7 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "default": "'hsl(0, 0%, 100%'"
+          "default": "'hsl(0, 0%, 100%)'"
         },
         "font_size": {
           "name": "font_size",
@@ -311,12 +290,8 @@
           "name": "products_customizations_product_id_products_id_fk",
           "tableFrom": "products_customizations",
           "tableTo": "products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -326,9 +301,7 @@
         "products_customizations_product_id_unique": {
           "name": "products_customizations_product_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "product_id"
-          ]
+          "columns": ["product_id"]
         }
       },
       "policies": {},
@@ -446,12 +419,8 @@
           "name": "product_views_product_id_products_id_fk",
           "tableFrom": "product_views",
           "tableTo": "products",
-          "columnsFrom": [
-            "product_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["product_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -459,12 +428,8 @@
           "name": "product_views_country_id_countries_id_fk",
           "tableFrom": "product_views",
           "tableTo": "countries",
-          "columnsFrom": [
-            "country_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["country_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -570,9 +535,7 @@
         "user_subscriptions_clerk_user_id_unique": {
           "name": "user_subscriptions_clerk_user_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "clerk_user_id"
-          ]
+          "columns": ["clerk_user_id"]
         }
       },
       "policies": {},
@@ -584,12 +547,7 @@
     "public.tier": {
       "name": "tier",
       "schema": "public",
-      "values": [
-        "Free",
-        "Basic",
-        "Standard",
-        "Premium"
-      ]
+      "values": ["Free", "Basic", "Standard", "Premium"]
     }
   },
   "schemas": {},

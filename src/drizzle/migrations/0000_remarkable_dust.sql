@@ -35,7 +35,7 @@ CREATE TABLE "products_customizations" (
 	"product_id" uuid NOT NULL,
 	"location_message" text DEFAULT 'Hey! It looks like you are from <b>{country}</b>. We support Parity Purchasing Power, so if you need it, use code <b>{coupon}</b> to get <b>{discount}%</b> off.' NOT NULL,
 	"background_color" text DEFAULT 'hsl(193, 82%, 31%)' NOT NULL,
-	"text_color" text DEFAULT 'hsl(0, 0%, 100%' NOT NULL,
+	"text_color" text DEFAULT 'hsl(0, 0%, 100%)' NOT NULL,
 	"font_size" text DEFAULT '1rem' NOT NULL,
 	"banner_container" text DEFAULT 'body' NOT NULL,
 	"is_sticky" boolean DEFAULT true NOT NULL,
