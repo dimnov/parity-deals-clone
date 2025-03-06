@@ -16,11 +16,13 @@ import DeleteProductAlertDialogContent from "./DeleteProductAlertDialogContent";
 function ProductGrid({
   products,
 }: {
-  name: string;
-  url: string;
-  description?: string | null;
-  id: string;
-}[]) {
+  products: {
+    name: string;
+    url: string;
+    description?: string | null;
+    id: string;
+  }[];
+}) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {products.map((product) => (
