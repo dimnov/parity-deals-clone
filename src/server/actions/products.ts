@@ -15,18 +15,20 @@ import {
 } from "@/server/db/products";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { canCustomizeBanner } from "../db/permissions";
+import { canCreateProduct, canCustomizeBanner } from "../db/permissions";
 
 export async function createProduct(
   unsafeData: z.infer<typeof productDetailsSchema>
 ): Promise<{ error: boolean; message: string } | undefined> {
   const { userId } = await auth();
   const { success, data } = productDetailsSchema.safeParse(unsafeData);
+  const canCreate = await canCreateProduct(userId);
 
-  if (!success || userId == null) {
+  if (!success || userId == null || !canCreate) {
     return { error: true, message: "There was an error creating your product" };
   }
 
+  // TODO fix TS error
   const { id } = await createProductDb({ ...data, clerkUserId: userId });
 
   redirect(`/dashboard/products/${id}/edit?tab=countries`);
@@ -67,7 +69,7 @@ export async function deleteProduct(id: string) {
 
 export async function updateCountryDiscounts(
   id: string,
-  unsafeData: z.infer<typeof productDetailsSchema>
+  unsafeData: z.infer<typeof productCountryDiscountsSchema>
 ) {
   const { userId } = await auth();
   const { success, data } = productCountryDiscountsSchema.safeParse(unsafeData);
