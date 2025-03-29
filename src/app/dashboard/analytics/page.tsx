@@ -1,47 +1,49 @@
 import HasPermission from "@/components/HasPermission";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { canAccessAnalytics } from "@/server/db/permissions";
 import {
   CHART_INTERVALS,
   getViewsByCountryChartData,
   getViewsByDayChartData,
   getViewsByPPPChartData,
 } from "@/server/db/productViews";
+import { canAccessAnalytics } from "@/server/db/permissions";
 import { auth } from "@clerk/nextjs/server";
+import { ChevronDownIcon } from "lucide-react";
 import ViewsByCountryChart from "../_components/charts/ViewsByCountryChart";
 import ViewsByPPPChart from "../_components/charts/ViewsByPPPChart";
 import ViewsByDayChart from "../_components/charts/ViewsByDayChart";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { createURL } from "@/lib/utils";
 import { getProducts } from "@/server/db/products";
 import TimezoneDropdownMenuItem from "../_components/TimezoneDropdownMenuItem";
 
-async function AnalyticsPage({
+export type SearchParamsType = {
+  interval?: string;
+  timezone?: string;
+  productId?: string;
+};
+
+export default async function AnalyticsPage({
   searchParams,
 }: {
-  searchParams: {
-    interval?: string;
-    timezone?: string;
-    productId?: string;
-  };
+  searchParams: Promise<SearchParamsType>;
 }) {
+  const searchParamsPromise = await searchParams;
   const { userId, redirectToSignIn } = await auth();
-
   if (userId == null) return redirectToSignIn();
 
   const interval =
-    CHART_INTERVALS[searchParams.interval as keyof typeof CHART_INTERVALS] ??
+    CHART_INTERVALS[searchParamsPromise.interval as keyof typeof CHART_INTERVALS] ??
     CHART_INTERVALS.last7Days;
-  const timezone = searchParams.timezone || "UTC";
-  const productId = searchParams.productId;
+  const timezone = searchParamsPromise.timezone || "UTC";
+  const productId = searchParamsPromise.productId;
 
   return (
     <>
@@ -60,7 +62,7 @@ async function AnalyticsPage({
                 {Object.entries(CHART_INTERVALS).map(([key, value]) => (
                   <DropdownMenuItem asChild key={key}>
                     <Link
-                      href={createURL("/dashboard/analytics", searchParams, {
+                      href={createURL("/dashboard/analytics", searchParamsPromise, {
                         interval: key,
                       })}
                     >
@@ -73,7 +75,7 @@ async function AnalyticsPage({
             <ProductDropdown
               userId={userId}
               selectedProductId={productId}
-              searchParams={searchParams}
+              searchParams={searchParamsPromise}
             />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -85,14 +87,14 @@ async function AnalyticsPage({
               <DropdownMenuContent>
                 <DropdownMenuItem asChild>
                   <Link
-                    href={createURL("/dashboard/analytics", searchParams, {
+                    href={createURL("/dashboard/analytics", searchParamsPromise, {
                       timezone: "UTC",
                     })}
                   >
                     UTC
                   </Link>
                 </DropdownMenuItem>
-                <TimezoneDropdownMenuItem searchParams={searchParams} />
+                <TimezoneDropdownMenuItem searchParams={searchParamsPromise} />
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -106,14 +108,12 @@ async function AnalyticsPage({
             userId={userId}
             productId={productId}
           />
-
           <ViewsByPPPCard
             interval={interval}
             timezone={timezone}
             userId={userId}
             productId={productId}
           />
-
           <ViewsByCountryCard
             interval={interval}
             timezone={timezone}
@@ -125,8 +125,6 @@ async function AnalyticsPage({
     </>
   );
 }
-
-export default AnalyticsPage;
 
 async function ProductDropdown({
   userId,
@@ -143,7 +141,7 @@ async function ProductDropdown({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline">
-          {products.find((prod) => prod.id === selectedProductId)?.name ?? "All Products"}
+          {products.find((p) => p.id === selectedProductId)?.name ?? "All Products"}
           <ChevronDownIcon className="size-4 ml-2" />
         </Button>
       </DropdownMenuTrigger>

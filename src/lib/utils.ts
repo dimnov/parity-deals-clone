@@ -14,19 +14,14 @@ export function createURL(
   oldParams: Record<string, string>,
   newParams: Record<string, string | undefined>
 ) {
-  const filteredOldParams = Object.fromEntries(
-    Object.entries(oldParams).filter(([_, value]) => value !== undefined)
-  );
-
-  const params = new URLSearchParams(filteredOldParams);
+  const params = new URLSearchParams(oldParams);
 
   Object.entries(newParams).forEach(([key, value]) => {
-    if (value === undefined) {
+    if (value == undefined) {
       params.delete(key);
     } else {
       params.set(key, value);
     }
   });
-
   return `${href}?${params.toString()}`;
 }

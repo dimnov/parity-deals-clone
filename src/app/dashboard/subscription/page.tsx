@@ -72,7 +72,11 @@ async function SubscriptionPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form action={createCustomerPortalSession}>
+              <form
+                action={async (formData: FormData) => {
+                  await createCustomerPortalSession();
+                }}
+              >
                 <Button variant="accent" className="text-lg rounded-lg" size="lg">
                   Manage Subscription
                 </Button>
@@ -114,8 +118,17 @@ function PricingCard({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form
+        {/* <form
           action={name === "Free" ? createCancelSession : createCheckoutSession.bind(null, name)}
+        > */}
+        <form
+          action={async (formData: FormData) => {
+            if (name === "Free") {
+              await createCancelSession();
+            } else {
+              await createCheckoutSession(name);
+            }
+          }}
         >
           <Button disabled={isCurrent} className="text-lg w-full rounded-lg" size="lg">
             {isCurrent ? "Current" : "Swap"}

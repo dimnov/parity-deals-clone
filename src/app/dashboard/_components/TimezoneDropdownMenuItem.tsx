@@ -1,8 +1,9 @@
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { createURL } from "@/lib/utils";
 import Link from "next/link";
+import { SearchParamsType } from "../analytics/page";
 
-function TimezoneDropdownMenuItem({ searchParams }: { searchParams: Record<string, string> }) {
+function TimezoneDropdownMenuItem({ searchParams }: { searchParams: SearchParamsType }) {
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   return (

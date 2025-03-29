@@ -28,7 +28,11 @@ export async function createProduct(
     return { error: true, message: "There was an error creating your product" };
   }
 
-  const { id } = await createProductDb({ ...data, clerkUserId: userId });
+  const { id } = await createProductDb({
+    ...data,
+    description: data.description || "",
+    clerkUserId: userId,
+  });
 
   redirect(`/dashboard/products/${id}/edit?tab=countries`);
 }
