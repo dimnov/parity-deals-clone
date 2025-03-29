@@ -1,4 +1,4 @@
-# ParityDeals Clone
+# [ParityDeals Clone](https://parity-deals-dimnov.vercel.app/)
 
 This project is a clone of [ParityDeals](https://www.paritydeals.com/), a SaaS platform designed to help businesses maximize sales revenue through dynamic pricing strategies tailored to customers' geographical locations and purchasing power parity.
 
