@@ -1,4 +1,4 @@
-# ParityDeals Clone
+# [ParityDeals Clone](https://parity-deals-dimnov.vercel.app/)
 
 This project is a clone of [ParityDeals](https://www.paritydeals.com/), a SaaS platform designed to help businesses maximize sales revenue through dynamic pricing strategies tailored to customers' geographical locations and purchasing power parity.
 
@@ -84,15 +84,19 @@ TEST_COUNTRY_CODE=
 
 ### User Authentication
 - User sign-up and login handled through Clerk.
+![hero](https://github.com/user-attachments/assets/ee07846b-e37c-4be0-992a-35cd5481ad3f)
 
 ### Dashboard
 - Displays products and analytics.
+![dashboard](https://github.com/user-attachments/assets/fe3ad7e3-59be-4ec9-b1dd-3950ab5556c3)
 
 ### Analytics
 - Market insights visualized with Recharts for better decision-making.
+![analytics](https://github.com/user-attachments/assets/8c8ab853-22d6-4122-b816-1659a94e5edc)
 
 ### Product Page
 - View detailed information about each product, including Editing, Country Discounts and Customization.
+![edit](https://github.com/user-attachments/assets/5fb33e62-bb57-406a-9998-520b5eef6b18)
 
 ### Checkout
 - Users can proceed to secure checkout via Stripe when selecting a subscription.
